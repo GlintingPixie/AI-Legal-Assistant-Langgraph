@@ -6,7 +6,6 @@ retriever = load_ipc_retriever(k=3)
 def ipc_section_agent(state, llm):
     case_summary = state["case_summary"]
 
-    # ✅ UPDATED retrieval call
     docs = retriever.invoke(case_summary)
 
     retrieved_ipc = "\n\n".join(
