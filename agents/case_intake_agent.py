@@ -16,6 +16,5 @@ def case_intake_agent(state, llm):
 
     response = llm.invoke([HumanMessage(content=prompt)])
 
-    # ✅ UPDATE state, do not replace it
     state["case_summary"] = response.content.strip()
     return state

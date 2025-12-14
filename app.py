@@ -53,9 +53,8 @@ if submitted:
 
         st.success("✅ Legal Assistant completed the analysis!")
 
-        # ============================
         # Display Outputs (Agent-wise)
-        # ============================
+       
 
         st.subheader("📌 Case Summary")
         st.markdown(result.get("case_summary", "Not available"))

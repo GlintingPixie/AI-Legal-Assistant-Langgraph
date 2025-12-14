@@ -27,7 +27,6 @@ def build_graph():
     graph.add_node("precedent", lambda s: legal_precedent_agent(s, llm))
     graph.add_node("drafter", lambda s: legal_drafter_agent(s, llm))
 
-    # 🔥 THIS IS THE CRITICAL FIX
     graph.add_edge(START, "case_intake")
     graph.add_edge("case_intake", "ipc_section")
     graph.add_edge("ipc_section", "precedent")

@@ -7,9 +7,9 @@ from langchain_chroma import Chroma
 from langchain_openai import AzureOpenAIEmbeddings
 
 
-# =========================================================
+
 # Shared Embeddings Configuration
-# =========================================================
+
 def get_embeddings():
     """Return Azure OpenAI embedding function."""
     return AzureOpenAIEmbeddings(
@@ -20,9 +20,9 @@ def get_embeddings():
     )
 
 
-# =========================================================
-# Vector DB BUILDER (Run ONCE)
-# =========================================================
+
+# Vector DB BUILDER
+
 def build_ipc_vectordb():
     """
     Build and persist a Chroma vector database from IPC JSON data.
@@ -76,9 +76,9 @@ def build_ipc_vectordb():
     print("✅ IPC Vector DB build completed successfully")
 
 
-# =========================================================
+
 # Vector DB RETRIEVER (Runtime)
-# =========================================================
+
 def load_ipc_retriever(k: int = 3):
     """
     Load the persisted IPC vector DB and return a retriever.
@@ -103,8 +103,7 @@ def load_ipc_retriever(k: int = 3):
     return vectordb.as_retriever(search_kwargs={"k": k})
 
 
-# =========================================================
 # Entry Point
-# =========================================================
+
 if __name__ == "__main__":
     build_ipc_vectordb()
