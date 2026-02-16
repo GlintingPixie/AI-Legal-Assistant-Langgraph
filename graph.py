@@ -11,11 +11,19 @@ from typing import TypedDict
 class LegalState(TypedDict, total=False):
     query: str
     case_summary: str
+
     ipc_sections: str
     ipc_sources: list
+    ipc_confidence: float
+
     precedents: str
     precedent_sources: list
+    precedent_confidence: float
+
     final_opinion: str
+    opinion_confidence: float
+    overall_confidence: float
+
 
 
 def build_graph():

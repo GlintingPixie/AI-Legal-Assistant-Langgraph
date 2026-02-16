@@ -17,12 +17,27 @@ def _build_short_search_query(ipc_text: str) -> str:
 
     return query[:380]
 
+def _domain_score(url):
+    if "indiankanoon" in url:
+        return 1.0
+    if "scconline" in url:
+        return 0.9
+    if "supremecourt" in url:
+        return 0.9
+    return 0.6
 
 def legal_precedent_agent(state, llm):
     ipc_text = state["ipc_sections"]
 
     search_query = _build_short_search_query(ipc_text)
     search_results = legal_precedent_search_tool(search_query)
+
+    if search_results:
+        reliability = sum(_domain_score(r["url"]) for r in search_results)
+        reliability /= len(search_results)
+        state["precedent_confidence"] = round(reliability, 2)
+    else:
+        state["precedent_confidence"] = 0.4
 
     if not search_results:
         state["precedents"] = (

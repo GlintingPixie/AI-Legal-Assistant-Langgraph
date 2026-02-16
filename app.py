@@ -1,84 +1,105 @@
-# app.py
-
 import streamlit as st
-from dotenv import load_dotenv
-
 from graph import build_graph
 
-# Load environment variables
-load_dotenv()
-
-# Page config
+# -----------------------------
+# Page Configuration
+# -----------------------------
 st.set_page_config(
-    page_title="AI Legal Assistant",
+    page_title="Legal AI Assistant",
     page_icon="⚖️",
     layout="wide"
 )
 
-# Title
-st.title("⚖️ AI Legal Assistant (IPC + Precedents)")
-st.markdown(
-    """
-Enter a legal problem in plain English.  
-This assistant will help you:
-- 📌 Understand the legal issue
-- 📘 Identify applicable IPC sections
-- ⚖️ Retrieve relevant legal precedents
-- 🧾 Generate a structured legal opinion
-"""
+st.title("⚖️ Agentic Legal AI Assistant")
+st.write("Analyze legal cases using IPC retrieval, precedents, and AI reasoning.")
+
+# -----------------------------
+# Build LangGraph App
+# -----------------------------
+@st.cache_resource
+def load_app():
+    return build_graph()
+
+app = load_app()
+
+# -----------------------------
+# User Input
+# -----------------------------
+user_input = st.text_area(
+    "Enter case description:",
+    placeholder="Example: A person cheated another by forging documents to sell land."
 )
 
-# Input form
-with st.form("legal_form"):
-    user_input = st.text_area(
-        "📝 Describe your legal issue:",
-        height=250,
-        placeholder="Example: A person forged land documents and cheated another by selling the land..."
-    )
-    submitted = st.form_submit_button("🔍 Run Legal Assistant")
+run_button = st.button("Analyze Case")
 
-# Run pipeline
-if submitted:
-    if not user_input.strip():
-        st.warning("Please enter a legal issue to analyze.")
-    else:
-        with st.spinner("🔎 Analyzing your case using multi-agent reasoning..."):
-            try:
-                app = build_graph()
-                result = app.invoke({"query": user_input})
-            except Exception as e:
-                st.error("❌ An error occurred while processing the case.")
-                st.exception(e)
-                st.stop()
+# -----------------------------
+# Run Analysis
+# -----------------------------
+if run_button and user_input:
 
-        st.success("✅ Legal Assistant completed the analysis!")
+    with st.spinner("Analyzing case..."):
 
-        # Display Outputs (Agent-wise)
-       
+        result = app.invoke({"query": user_input})
 
-        st.subheader("📌 Case Summary")
-        st.markdown(result.get("case_summary", "Not available"))
+    st.success("Analysis Complete")
 
-        st.subheader("📘 Applicable IPC Sections")
-        st.markdown(result.get("ipc_sections", "Not available"))
+    # -----------------------------
+    # Legal Opinion Output
+    # -----------------------------
+    st.subheader("⚖️ Legal Opinion")
+    st.write(result.get("final_opinion", "No opinion generated."))
 
-        with st.expander("🔍 IPC Retrieval Sources"):
-            for doc in result.get("ipc_sources", []):
-                st.markdown(
-                    f"**Section {doc.metadata.get('section')}** – {doc.metadata.get('section_title')}"
-                )
+    # -----------------------------
+    # Confidence Scores
+    # -----------------------------
+    st.subheader("📊 Confidence & Explainability")
 
-        st.subheader("⚖️ Relevant Legal Precedents")
-        st.markdown(result.get("precedents", "Not available"))
+    overall_conf = result.get("overall_confidence", 0)
 
-        with st.expander("🌐 Precedent Sources"):
-            for src in result.get("precedent_sources", []):
-                st.markdown(f"- [{src['title']}]({src['url']})")
+    # Progress bar for overall confidence
+    st.progress(overall_conf)
 
-        st.subheader("🧾 Final Legal Opinion")
-        st.markdown(result.get("final_opinion", "Not available"))
+    col1, col2 = st.columns(2)
 
-        st.caption(
-            "⚠️ Disclaimer: This AI-generated legal analysis is for educational purposes only "
-            "and does not constitute legal advice."
+    with col1:
+        st.metric(
+            label="IPC Retrieval Confidence",
+            value=result.get("ipc_confidence", "N/A")
         )
+
+        st.metric(
+            label="Precedent Reliability",
+            value=result.get("precedent_confidence", "N/A")
+        )
+
+    with col2:
+        st.metric(
+            label="Opinion Confidence",
+            value=result.get("opinion_confidence", "N/A")
+        )
+
+        st.metric(
+            label="Overall Confidence",
+            value=overall_conf
+        )
+
+    # -----------------------------
+    # Sources (Explainability)
+    # -----------------------------
+    with st.expander("🔍 Retrieved IPC Sources"):
+        for doc in result.get("ipc_sources", []):
+            st.write(f"**Section {doc.metadata.get('section')}**")
+            st.write(doc.page_content)
+            st.divider()
+
+    with st.expander("📚 Precedent Sources"):
+        for src in result.get("precedent_sources", []):
+            st.write(f"**{src.get('title')}**")
+            st.write(src.get("url"))
+            st.divider()
+
+# -----------------------------
+# Footer
+# -----------------------------
+st.markdown("---")
+st.caption("⚠️ This tool provides educational legal insights and is not legal advice.")

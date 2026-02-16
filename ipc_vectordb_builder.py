@@ -79,28 +79,19 @@ def build_ipc_vectordb():
 
 # Vector DB RETRIEVER (Runtime)
 
-def load_ipc_retriever(k: int = 3):
-    """
-    Load the persisted IPC vector DB and return a retriever.
-    Used at runtime by ipc_section_agent.
-    """
+def load_ipc_vectordb():
     load_dotenv()
 
     persist_dir = os.getenv("PERSIST_DIRECTORY_PATH")
     collection_name = os.getenv("IPC_COLLECTION_NAME")
 
-    if not persist_dir or not collection_name:
-        raise EnvironmentError("❌ Missing vector DB environment variables")
-
     embeddings = get_embeddings()
 
-    vectordb = Chroma(
+    return Chroma(
         persist_directory=persist_dir,
         collection_name=collection_name,
         embedding_function=embeddings
     )
-
-    return vectordb.as_retriever(search_kwargs={"k": k})
 
 
 # Entry Point
