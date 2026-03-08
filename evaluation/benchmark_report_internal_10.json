@@ -1,0 +1,270 @@
+{
+  "summary": {
+    "dataset_size": 10,
+    "success_rate": 0.8,
+    "mean_latency_seconds": 26.9295,
+    "mean_ipc_precision": 0.29,
+    "mean_ipc_recall": 0.36666666666666664,
+    "mean_ipc_f1": 0.3215873015873016,
+    "mean_ipc_exact_match": 0.0,
+    "mean_precedent_domain_recall": 0.45,
+    "mean_ipc_confidence": 0.67875,
+    "mean_precedent_confidence": 0.6925,
+    "mean_opinion_confidence": 0.9125,
+    "mean_overall_confidence": 0.7275,
+    "mean_opinion_reference_token_f1": 0.03131606005919828
+  },
+  "cases": [
+    {
+      "id": "case_001",
+      "success": true,
+      "error": null,
+      "latency_seconds": 34.4902,
+      "ipc_precision": 0.4,
+      "ipc_recall": 0.5,
+      "ipc_f1": 0.4444444444444445,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 0.0,
+      "precedent_confidence": 0.6,
+      "ipc_confidence": 0.68,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.7,
+      "opinion_reference_token_f1": 0.0511770726714432,
+      "predicted_ipc_sections": [
+        "406",
+        "420",
+        "463",
+        "466",
+        "467"
+      ],
+      "gold_ipc_sections": [
+        "420",
+        "467",
+        "468",
+        "471"
+      ]
+    },
+    {
+      "id": "case_002",
+      "success": false,
+      "error": "Azure has not provided the response due to a content filter being triggered",
+      "latency_seconds": 2.1046,
+      "ipc_precision": 0.0,
+      "ipc_recall": 0.0,
+      "ipc_f1": 0.0,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 0.0,
+      "precedent_confidence": null,
+      "ipc_confidence": null,
+      "opinion_confidence": null,
+      "overall_confidence": null,
+      "opinion_reference_token_f1": 0.0,
+      "predicted_ipc_sections": [],
+      "gold_ipc_sections": [
+        "323",
+        "506"
+      ]
+    },
+    {
+      "id": "case_003",
+      "success": true,
+      "error": null,
+      "latency_seconds": 40.0517,
+      "ipc_precision": 0.0,
+      "ipc_recall": 0.0,
+      "ipc_f1": 0.0,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 0.5,
+      "precedent_confidence": 0.68,
+      "ipc_confidence": 0.64,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.7,
+      "opinion_reference_token_f1": 0.038461538461538464,
+      "predicted_ipc_sections": [
+        "404",
+        "405",
+        "477A"
+      ],
+      "gold_ipc_sections": [
+        "408",
+        "420"
+      ]
+    },
+    {
+      "id": "case_004",
+      "success": true,
+      "error": null,
+      "latency_seconds": 35.1478,
+      "ipc_precision": 0.3333333333333333,
+      "ipc_recall": 0.3333333333333333,
+      "ipc_f1": 0.3333333333333333,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 1.0,
+      "precedent_confidence": 0.68,
+      "ipc_confidence": 0.64,
+      "opinion_confidence": 1.0,
+      "overall_confidence": 0.72,
+      "opinion_reference_token_f1": 0.04,
+      "predicted_ipc_sections": [
+        "356",
+        "390",
+        "392"
+      ],
+      "gold_ipc_sections": [
+        "341",
+        "392",
+        "394"
+      ]
+    },
+    {
+      "id": "case_005",
+      "success": true,
+      "error": null,
+      "latency_seconds": 30.8862,
+      "ipc_precision": 0.5,
+      "ipc_recall": 0.6666666666666666,
+      "ipc_f1": 0.5714285714285715,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 0.0,
+      "precedent_confidence": 0.66,
+      "ipc_confidence": 0.69,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.72,
+      "opinion_reference_token_f1": 0.03940886699507389,
+      "predicted_ipc_sections": [
+        "323",
+        "352",
+        "354A",
+        "498A"
+      ],
+      "gold_ipc_sections": [
+        "323",
+        "498A",
+        "506"
+      ]
+    },
+    {
+      "id": "case_006",
+      "success": true,
+      "error": null,
+      "latency_seconds": 30.4068,
+      "ipc_precision": 0.3333333333333333,
+      "ipc_recall": 0.5,
+      "ipc_f1": 0.4,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 1.0,
+      "precedent_confidence": 0.82,
+      "ipc_confidence": 0.67,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.76,
+      "opinion_reference_token_f1": 0.02611534276387377,
+      "predicted_ipc_sections": [
+        "445",
+        "457",
+        "458"
+      ],
+      "gold_ipc_sections": [
+        "380",
+        "457"
+      ]
+    },
+    {
+      "id": "case_007",
+      "success": true,
+      "error": null,
+      "latency_seconds": 34.2179,
+      "ipc_precision": 0.3333333333333333,
+      "ipc_recall": 0.3333333333333333,
+      "ipc_f1": 0.3333333333333333,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 1.0,
+      "precedent_confidence": 0.68,
+      "ipc_confidence": 0.72,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.74,
+      "opinion_reference_token_f1": 0.03691639522258415,
+      "predicted_ipc_sections": [
+        "346",
+        "347",
+        "348"
+      ],
+      "gold_ipc_sections": [
+        "342",
+        "347",
+        "506"
+      ]
+    },
+    {
+      "id": "case_008",
+      "success": true,
+      "error": null,
+      "latency_seconds": 29.0594,
+      "ipc_precision": 0.6666666666666666,
+      "ipc_recall": 1.0,
+      "ipc_f1": 0.8,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 0.0,
+      "precedent_confidence": 0.66,
+      "ipc_confidence": 0.68,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.72,
+      "opinion_reference_token_f1": 0.039360393603936034,
+      "predicted_ipc_sections": [
+        "499",
+        "500",
+        "501"
+      ],
+      "gold_ipc_sections": [
+        "499",
+        "500"
+      ]
+    },
+    {
+      "id": "case_009",
+      "success": true,
+      "error": null,
+      "latency_seconds": 30.7765,
+      "ipc_precision": 0.3333333333333333,
+      "ipc_recall": 0.3333333333333333,
+      "ipc_f1": 0.3333333333333333,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 1.0,
+      "precedent_confidence": 0.76,
+      "ipc_confidence": 0.71,
+      "opinion_confidence": 0.9,
+      "overall_confidence": 0.76,
+      "opinion_reference_token_f1": 0.04172099087353325,
+      "predicted_ipc_sections": [
+        "354A",
+        "354D",
+        "507"
+      ],
+      "gold_ipc_sections": [
+        "354D",
+        "506",
+        "509"
+      ]
+    },
+    {
+      "id": "case_010",
+      "success": false,
+      "error": "Azure has not provided the response due to a content filter being triggered",
+      "latency_seconds": 2.1539,
+      "ipc_precision": 0.0,
+      "ipc_recall": 0.0,
+      "ipc_f1": 0.0,
+      "ipc_exact_match": 0.0,
+      "precedent_domain_recall": 0.0,
+      "precedent_confidence": null,
+      "ipc_confidence": null,
+      "opinion_confidence": null,
+      "overall_confidence": null,
+      "opinion_reference_token_f1": 0.0,
+      "predicted_ipc_sections": [],
+      "gold_ipc_sections": [
+        "279",
+        "304A"
+      ]
+    }
+  ]
+}

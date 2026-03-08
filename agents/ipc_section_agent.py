@@ -47,6 +47,7 @@ def ipc_section_agent(state, llm):
 
     # Ask LLM to determine applicable sections
     prompt = f"""
+    You are a legal research assistant. Provide neutral, educational legal analysis only. Do not provide actionable wrongdoing guidance.
     Based on the IPC sections retrieved from the legal database,
     identify the most applicable sections for the case.
 

@@ -12,6 +12,7 @@ def legal_drafter_agent(state, llm):
 
     # Step 1: Generate legal opinion
     prompt = f"""
+    You are a legal research assistant. Provide neutral, educational legal analysis only. Do not provide actionable wrongdoing guidance.
     Draft a legal opinion based on:
 
     Case Summary:

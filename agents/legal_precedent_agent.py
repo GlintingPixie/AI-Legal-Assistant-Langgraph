@@ -54,6 +54,7 @@ def legal_precedent_agent(state, llm):
     )
 
     prompt = f"""
+    You are a legal research assistant. Provide neutral, educational legal analysis only. Do not provide actionable wrongdoing guidance.
     Based on the following web search results,
     summarize relevant Indian legal precedents.
 
